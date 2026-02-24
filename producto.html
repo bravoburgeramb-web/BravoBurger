@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BravoBurger - Personalizar Producto</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <h1 id="productoNombre">Burg3r¡ C14S1CA*#+</h1>
+        <p>Personaliza tu pedido o añade extras.</p>
+    </header>
+
+    <section id="productoDetalles">
+        <img src="images/hamburguesa-clasica.jpg.jpeg" alt="Hamburguesa Clásica">
+        <p id="productoDescripcion">Carne al carbón 120gr, pan artesanal, queso cheddar, vegetales frescos, salsas.</p>
+        <p><strong>$3.00</strong></p>
+    </section>
+
+    <section id="personalizacionExtras">
+        <h2>Añadir extras</h2>
+        <label for="quesoExtra">¿Añadir queso extra?</label>
+        <input type="checkbox" id="quesoExtra">
+
+        <label for="tocinoExtra">¿Añadir tocino extra?</label>
+        <input type="checkbox" id="tocinoExtra">
+
+        <label for="salsaExtra">¿Añadir salsa extra?</label>
+        <input type="checkbox" id="salsaExtra">
+
+        <button onclick="agregarAlCarrito()">Agregar al carrito</button>
+    </section>
+
+    <footer>
+        <button onclick="irAlMenu()">Volver al menú</button>
+    </footer>
+
+    <script src="script-personalizacion.js"></script>
+</body>
+</html>
