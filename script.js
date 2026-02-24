@@ -1,40 +1,58 @@
 let carrito = [];
 let total = 0;
 
-function addToCart(producto, precio) {
-    carrito.push({ producto, precio });
-    total += precio;
-    updateCart();
+function agregarAlCarrito(nombre, precio, cantidad = 1) {
+    let producto = { nombre, precio, cantidad };
+    carrito.push(producto);
+    total += precio * cantidad;
+
+    alert(`Producto agregado: ${nombre} - $${precio}`);
+    actualizarCarrito();
 }
 
-function updateCart() {
-    const cartItems = document.getElementById('cartItems');
-    cartItems.innerHTML = '';
-    carrito.forEach(item => {
-        const li = document.createElement('li');
-        li.textContent = `${item.producto} - $${item.precio.toFixed(2)}`;
-        cartItems.appendChild(li);
+function actualizarCarrito() {
+    let carritoHTML = '';
+    carrito.forEach((producto) => {
+        carritoHTML += `
+            <div class="productoCarrito">
+                <img src="images/${producto.nombre.toLowerCase().replace(/\s/g, '-')}.jpg" alt="${producto.nombre}">
+                <p>${producto.nombre} - $${producto.precio} x ${producto.cantidad}</p>
+                <button onclick="eliminarDelCarrito('${producto.nombre}')">Eliminar</button>
+            </div>
+        `;
     });
-    document.getElementById('total').textContent = `Total: $${total.toFixed(2)}`;
+
+    document.getElementById('productosCarrito').innerHTML = carritoHTML;
+    document.getElementById('totalCarrito').innerText = `$${total.toFixed(2)}`;
 }
 
-function sendToWhatsApp() {
-    const direccion = document.getElementById('direccion').value;
-    let mensaje = 'Hola, me gustaría hacer el siguiente pedido:\n';
+function eliminarDelCarrito(nombre) {
+    carrito = carrito.filter(item => item.nombre !== nombre);
+    total -= carrito.find(item => item.nombre === nombre).precio;
+    actualizarCarrito();
+}
+
+function vaciarCarrito() {
+    carrito = [];
+    total = 0;
+    actualizarCarrito();
+}
+
+function pagar() {
+    let mensaje = `¡Hola! Quiero realizar el siguiente pedido:\n\n`;
 
     carrito.forEach(item => {
-        mensaje += `${item.producto} - $${item.precio.toFixed(2)}\n`;
+        mensaje += `${item.nombre} - $${item.precio} x ${item.cantidad}\n`;
     });
 
-    mensaje += `Total: $${total.toFixed(2)}\n`;
-
-    if (direccion) {
-        mensaje += `Dirección: ${direccion}\n`;
-    } else {
-        mensaje += 'Retiro en el local.\n';
-    }
-
-    const numeroWhatsApp = '1234567890'; // Reemplaza con tu número de WhatsApp
-    const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensaje)}`;
+    mensaje += `\nTotal: $${total.toFixed(2)}`;
+    let url = `https://wa.me/1234567890?text=${encodeURIComponent(mensaje)}`;  // Reemplaza con tu número de WhatsApp
     window.open(url, '_blank');
+}
+
+function cambiarDireccion() {
+    let nuevaDireccion = prompt('Introduce la nueva dirección:');
+    if (nuevaDireccion) {
+        document.getElementById('direccionEntrega').innerText = nuevaDireccion;
+    }
 }
