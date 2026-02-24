@@ -34,8 +34,7 @@ function sendToWhatsApp() {
         mensaje += 'Retiro en el local.\n';
     }
 
-    // Reemplaza con tu número de WhatsApp
-    const numeroWhatsApp = '1234567890';
+    const numeroWhatsApp = '1234567890'; // Reemplaza con tu número de WhatsApp
     const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensaje)}`;
     window.open(url, '_blank');
 }
