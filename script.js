@@ -1,3 +1,4 @@
+/* Carrito de Compras */
 let carrito = [];
 let total = 0;
 
@@ -55,4 +56,28 @@ function cambiarDireccion() {
     if (nuevaDireccion) {
         document.getElementById('direccionEntrega').innerText = nuevaDireccion;
     }
+}
+
+function personalizarProducto(nombre, precio) {
+    // Abre el modal de personalización
+    document.getElementById('personalizacionModal').style.display = "block";
+    document.getElementById('productoNombre').innerText = `Producto: ${nombre} - $${precio}`;
+}
+
+function agregarAlCarritoPersonalizado(tipo) {
+    let producto = document.getElementById('productoNombre').innerText.split(' - ')[0];
+    let precio = parseFloat(document.getElementById('productoNombre').innerText.split('$')[1]);
+
+    let nombreCompleto = `${producto} - ${tipo}`;
+
+    carrito.push({ nombre: nombreCompleto, precio: precio });
+    total += precio;
+
+    alert(`Producto agregado: ${nombreCompleto} por $${precio}`);
+    cerrarModal();
+    actualizarCarrito();
+}
+
+function cerrarModal() {
+    document.getElementById('personalizacionModal').style.display = "none";
 }
