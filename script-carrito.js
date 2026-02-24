@@ -1,16 +1,40 @@
 let carrito = [];
 let total = 0;
 
-// Función para agregar al carrito
-function agregarAlCarrito(nombre, precio) {
-    let producto = { nombre, precio };
-    carrito.push(producto);
-    total += precio;
-    alert(`Producto agregado: ${nombre}`);
-    actualizarCarrito();
+function verProducto(producto) {
+    window.location.href = `producto.html?producto=${producto}`;
 }
 
-// Función para actualizar el carrito
+function agregarAlCarrito() {
+    let nombreProducto = document.getElementById('productoNombre').innerText;
+    let precio = parseFloat(document.getElementById('productoDetalles').innerText.split('$')[1]);
+
+    let extras = '';
+    if (document.getElementById('quesoExtra').checked) {
+        extras += 'Queso Extra, ';
+        precio += 0.50;
+    }
+    if (document.getElementById('tocinoExtra').checked) {
+        extras += 'Tocino Extra, ';
+        precio += 0.75;
+    }
+    if (document.getElementById('salsaExtra').checked) {
+        extras += 'Salsa Extra, ';
+        precio += 0.25;
+    }
+
+    let producto = `${nombreProducto} - $${precio.toFixed(2)} (${extras.slice(0, -2)})`;
+    carrito.push({ nombre: producto, precio: precio });
+    total += precio;
+
+    alert(`Producto agregado: ${producto}`);
+    irAlMenu();
+}
+
+function irAlMenu() {
+    window.location.href = 'menu.html';
+}
+
 function actualizarCarrito() {
     let carritoHTML = '';
     carrito.forEach((producto) => {
@@ -26,14 +50,7 @@ function actualizarCarrito() {
     document.getElementById('totalCarrito').innerText = `$${total.toFixed(2)}`;
 }
 
-// Función para vaciar el carrito
-function vaciarCarrito() {
-    carrito = [];
-    total = 0;
-    actualizarCarrito();
-}
-
-// Función para proceder al pago (redirige a WhatsApp)
+// Al hacer clic en el botón "Pagar", solicitamos la dirección si es a domicilio
 function pagar() {
     let mensaje = `¡Hola! Quiero realizar el siguiente pedido:\n\n`;
 
@@ -43,7 +60,7 @@ function pagar() {
 
     mensaje += `\nTotal: $${total.toFixed(2)}`;
 
-    // Verificar si es domicilio o no
+    // Verificamos si es domicilio o no
     let direccion = "";
     if (document.getElementById('direccionEntrega')) {
         direccion = document.getElementById('direccionEntrega').value;
@@ -58,7 +75,7 @@ function pagar() {
     window.open(url, '_blank');
 }
 
-// Función para cambiar la dirección de entrega
+// Función para cambiar la dirección de entrega (si el usuario seleccionó Domicilio)
 function cambiarDireccion() {
     let nuevaDireccion = prompt('Introduce la nueva dirección:');
     if (nuevaDireccion) {
