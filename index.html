@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menú de Pedidos</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <h1>Hamburguesería Deliciosa</h1>
+        <p>Selecciona tus productos y personaliza tu pedido.</p>
+    </header>
+
+    <section id="menu">
+        <div class="product" id="hamburguesa1">
+            <img src="hamburguesa1.jpg" alt="Hamburguesa Clásica">
+            <h3>Hamburguesa Clásica</h3>
+            <p>Precio: $5.00</p>
+            <button onclick="addToCart('Hamburguesa Clásica', 5.00)">Agregar al Carrito</button>
+        </div>
+        <div class="product" id="hamburguesa2">
+            <img src="hamburguesa2.jpg" alt="Hamburguesa BBQ">
+            <h3>Hamburguesa BBQ</h3>
+            <p>Precio: $6.00</p>
+            <button onclick="addToCart('Hamburguesa BBQ', 6.00)">Agregar al Carrito</button>
+        </div>
+        <!-- Más productos aquí -->
+    </section>
+
+    <section id="carrito">
+        <h2>Carrito de Compras</h2>
+        <ul id="cartItems"></ul>
+        <p id="total">Total: $0.00</p>
+        <form id="formularioDireccion">
+            <label for="direccion">Dirección (si es a domicilio):</label>
+            <input type="text" id="direccion" placeholder="Introduce tu dirección">
+        </form>
+        <button onclick="sendToWhatsApp()">Enviar Pedido a WhatsApp</button>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Hamburguesería Deliciosa</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
