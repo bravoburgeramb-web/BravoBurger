@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menú de Pedidos - BravoBurger</title>
+    <title>BravoBurger - Menú</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -15,77 +15,67 @@
     </header>
 
     <section id="menu">
-        <!-- Hamburguesa Clásica -->
-        <div class="product" id="hamburguesa-clasica">
+        <!-- Producto 1: Hamburguesa Clásica -->
+        <div class="product-card">
             <img src="images/hamburguesa-clasica.jpg.jpeg" alt="Hamburguesa Clásica">
             <h3>Burg3r¡ C14S1CA*#+</h3>
             <p>Carne al carbón 120gr, pan artesanal, queso cheddar, vegetales frescos, salsas. <strong>$3.00</strong></p>
-            <button onclick="addToCart('Burg3r¡ C14S1CA*#+', 3.00)">Agregar al Carrito</button>
+            <button onclick="personalizarProducto('Burg3r¡ C14S1CA*#+', 3.00)">Personalizar</button>
         </div>
-        
-        <!-- Hamburguesa Doble -->
-        <div class="product" id="hamburguesa-doble">
+
+        <!-- Producto 2: Hamburguesa Doble -->
+        <div class="product-card">
             <img src="images/hamburguesa-doble.jpg.jpeg" alt="Hamburguesa Doble">
             <h3>Burg3r¡ D0BL3*#+</h3>
             <p>2 carnes al carbón 120gr, pan artesanal, 2 queso cheddar, vegetales frescos, salsas. <strong>$3.75</strong></p>
-            <button onclick="addToCart('Burg3r¡ D0BL3*#+', 3.75)">Agregar al Carrito</button>
+            <button onclick="personalizarProducto('Burg3r¡ D0BL3*#+', 3.75)">Personalizar</button>
         </div>
 
-        <!-- Hamburguesa con Champiñones -->
-        <div class="product" id="hamburguesa-championes">
+        <!-- Producto 3: Hamburguesa con Champiñones -->
+        <div class="product-card">
             <img src="images/hamburguesa-campeones.jpg.jpeg" alt="Hamburguesa con Champiñones">
             <h3>Burg3r¡ CH4MP1*#+</h3>
             <p>Carne al carbón 120gr, champiñones salteados, pan artesanal, queso cheddar, vegetales frescos, salsas. <strong>$3.50</strong></p>
-            <button onclick="addToCart('Burg3r¡ CH4MP1*#+', 3.50)">Agregar al Carrito</button>
+            <button onclick="personalizarProducto('Burg3r¡ CH4MP1*#+', 3.50)">Personalizar</button>
         </div>
 
-        <!-- Hamburguesa con Chorizo -->
-        <div class="product" id="hamburguesa-chorizo">
+        <!-- Producto 4: Hamburguesa con Chorizo -->
+        <div class="product-card">
             <img src="images/hamburguesa-chorizo.jpg.jpeg" alt="Hamburguesa con Chorizo">
             <h3>Burg3r¡ CH0R1*#+</h3>
             <p>Carne al carbón 120gr, chorizo, pan artesanal, vegetales frescos, queso cheddar, salsas. <strong>$3.50</strong></p>
-            <button onclick="addToCart('Burg3r¡ CH0R1*#+', 3.50)">Agregar al Carrito</button>
+            <button onclick="personalizarProducto('Burg3r¡ CH0R1*#+', 3.50)">Personalizar</button>
         </div>
 
-        <!-- Hamburguesa con Tocino -->
-        <div class="product" id="hamburguesa-tocino">
+        <!-- Producto 5: Hamburguesa con Tocino -->
+        <div class="product-card">
             <img src="images/hamburguesa-tocino-doble.jpg.jpeg" alt="Hamburguesa con Tocino">
             <h3>B4C0N! L0V3R*#!+</h3>
             <p>Carne al carbón 120gr, tocino crocante, pan artesanal, queso cheddar, vegetales frescos, salsas. <strong>$3.50</strong></p>
-            <button onclick="addToCart('B4C0N! L0V3R*#!+', 3.50)">Agregar al Carrito</button>
+            <button onclick="personalizarProducto('B4C0N! L0V3R*#!+', 3.50)">Personalizar</button>
         </div>
 
-        <!-- Hamburguesa con Tocino Doble -->
-        <div class="product" id="hamburguesa-tocino-doble">
+        <!-- Producto 6: Hamburguesa con Tocino Doble -->
+        <div class="product-card">
             <img src="images/hamburguesa-tocino.jpg.jpeg" alt="Hamburguesa con Tocino Doble">
             <h3>B4C0N! DUP10*#!+</h3>
             <p>2 carnes al carbón 120gr, 2 tocinos crocantes, pan artesanal, queso cheddar, vegetales frescos, salsas. <strong>$3.99</strong></p>
-            <button onclick="addToCart('B4C0N! DUP10*#!+', 3.99)">Agregar al Carrito</button>
+            <button onclick="personalizarProducto('B4C0N! DUP10*#!+', 3.99)">Personalizar</button>
         </div>
-
-        <!-- Extras -->
-        <h2>Extras</h2>
-        <ul>
-            <li>Carne al carbón (120gr) - <strong>$1.00</strong></li>
-            <li>Tocino - <strong>$0.75</strong></li>
-            <li>Chorizo al carbón - <strong>$1.00</strong></li>
-            <li>Salsa de champiñones - <strong>$0.75</strong></li>
-            <li>Porción de papas fritas - <strong>$1.25</strong></li>
-            <li>Queso cheddar - <strong>$0.50</strong></li>
-            <li>Gaseosa - <strong>$0.50</strong></li>
-        </ul>
     </section>
 
-    <section id="carrito">
-        <h2>Carrito de Compras</h2>
-        <ul id="cartItems"></ul>
-        <p id="total">Total: $0.00</p>
-        <form id="formularioDireccion">
-            <label for="direccion">Dirección (si es a domicilio):</label>
-            <input type="text" id="direccion" placeholder="Introduce tu dirección">
-        </form>
-        <button onclick="sendToWhatsApp()">Enviar Pedido a WhatsApp</button>
-    </section>
+    <!-- Modal de Personalización -->
+    <div id="personalizacionModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="cerrarModal()">&times;</span>
+            <h2>Personaliza tu Pedido</h2>
+            <p id="productoNombre"></p>
+            <p>Selecciona el tipo:</p>
+            <button onclick="agregarAlCarrito('Original')">Original</button>
+            <button onclick="agregarAlCarrito('Crispy')">Crispy</button>
+            <button onclick="cerrarModal()">Cancelar</button>
+        </div>
+    </div>
 
     <footer>
         <p>&copy; 2026 BravoBurger</p>
